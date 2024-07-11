@@ -1,0 +1,94 @@
+Sure, let's start by getting the Vue.js CDN link and setting up a simple Vue app that will control a part of our web page. Here's how you can do it:
+
+1. **Get the Vue.js CDN link**: Head over to the [Vue.js documentation](https://v3.vuejs.org/guide/installation.html#cdn) and grab the CDN link for Vue.js. For this example, we'll use Vue 3.0.2.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Widget</title>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="app.js"></script>
+</body>
+</html>
+```
+
+2. **Create a Separate JavaScript File**: Create an `app.js` file where we will write our Vue code.
+
+```javascript
+console.log("Hello Vue!");
+
+// Create a Vue app
+const app = Vue.createApp({
+    data() {
+        return {
+            title: "The Final Empire",
+            author: "Brandon Sanderson",
+            age: 45,
+            showBooks: true
+        };
+    },
+    methods: {
+        toggleShowBooks() {
+            this.showBooks = !this.showBooks;
+        },
+        changeTitle(newTitle) {
+            this.title = newTitle;
+        }
+    }
+});
+
+// Mount the app to the div with id 'app'
+app.mount('#app');
+```
+
+3. **Add Template and Bind Data**: Let's update our template to include some dynamic data and event handling.
+
+```javascript
+const app = Vue.createApp({
+    data() {
+        return {
+            title: "The Final Empire",
+            author: "Brandon Sanderson",
+            age: 45,
+            showBooks: true
+        };
+    },
+    methods: {
+        toggleShowBooks() {
+            this.showBooks = !this.showBooks;
+        },
+        changeTitle(newTitle) {
+            this.title = newTitle;
+        }
+    },
+    template: `
+        <div>
+            <h2>{{ title }}</h2>
+            <p>Author: {{ author }}</p>
+            <p>Age: {{ age }}</p>
+            <button @click="toggleShowBooks">
+                {{ showBooks ? 'Hide' : 'Show' }} Books
+            </button>
+            <div v-if="showBooks">
+                <p>Currently showing books...</p>
+                <button @click="changeTitle('Words of Radiance')">Change Title</button>
+            </div>
+        </div>
+    `
+});
+
+// Mount the app to the div with id 'app'
+app.mount('#app');
+```
+
+4. **Run on a Local Dev Server**: Use a live server to view your project. If you're using VSCode, you can install the Live Server extension, right-click on your `index.html` file, and select "Open with Live Server."
+
+5. **Check the Output**: Open the console (F12) to ensure "Hello Vue!" is logged, and interact with the buttons to see the Vue app in action.
+
+This setup allows you to quickly experiment with Vue by embedding it in an HTML file and separating your Vue code into a different JavaScript file for clarity. Once you are comfortable with the basics, you can move on to more complex Vue applications using Vue CLI.
